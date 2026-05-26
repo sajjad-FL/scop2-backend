@@ -1,0 +1,204 @@
+/******************************************/
+/* CUSTOM CSS FILE FOR MARKDOWN REPORTING */
+/******************************************/
+
+.wrap {
+  width: 90%;
+}
+
+
+title {
+          font-family: helvetica;
+          text-align: center;
+          color: black;
+          font-size: 18pt;
+          font-weight: bold;
+}
+
+/* headings (size - color - font - ...)*/
+h1, h2, h3, h4, h5, h6 { 
+  font-family: "Montserrat", Arial, sans-serif;
+  margin: 1.2em 0em 0.6em 0em;
+}
+
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 200%;
+    font-weight: normal;
+    text-align: left;
+    color: black;
+    line-height: 1.1em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 150%;
+    text-align: left;
+    color: #808080;
+    line-height: 1.25em;
+    font-weight: bold;
+}
+  
+h3 {
+    font-size: 130%; 
+    text-align: left;
+    color: #2F4E6F;
+    line-height: 1.2em;
+    font-weight: bold;
+}
+  
+h4 {
+    text-align: left;
+    color: #2F4E6F;
+    font-size: 115%;
+    font-weight: bold;
+}
+
+h5, h6 {
+    text-align: left;
+    color: #98B1C4;
+    font-size: 105%;
+    font-weight: bold;
+}
+
+p {
+    font-family: helvetica;
+    font-size: 11pt;
+}
+
+
+/* Images and tables */
+.btn {
+    border-width: 0 0px 0px 0px;
+    font-weight: normal;
+    text-transform: ;
+}
+.btn-default {
+    color: #2ecc71;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+
+
+/* Images and tables */
+table {
+  font-family: helvetica;
+  max-width: 97.5%;
+  border: 0px;
+  align: center;
+  border-spacing: 10 px;
+  border-collapse: separate;
+  padding: 0 0.5em;
+}
+
+
+caption, p.caption {
+    color: grey;
+    font-family: helvetica;
+    font-size: 0.9em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+#head1 {
+   color: black;
+   font-size: 14pt;
+   text-align: left;
+   font-weight: bold;
+}
+
+#head2 {
+   color: black;
+   font-size: 14pt;
+   text-align: center;
+   font-weight: bold;
+}
+
+#c11pt {
+   color: black;
+   font-size: 11pt;
+   text-align: center;
+   font-weight: normal;
+}
+
+
+#confhead {
+   color: black;
+   font-size: 9pt;
+   text-align: center;
+   font-weight: bold;
+}
+
+#confbody {
+   color: black;
+   font-size: 9pt;
+   text-align: left;
+   font-weight: normal;
+}
+
+
+
+
+
+ul li{
+ font-family: helvetica;
+}
+
+ol li{
+ font-family: helvetica;
+}
+
+
+
+/* Table of content */
+#TOC {
+    margin: 25px 0px 20px 0px;
+    font-family: helvetica;
+}
+
+.tocify {
+  border: 1px solid #1D2951;
+}
+
+.table-of-contents{
+  width: auto;
+  background: #eee;
+  font-size: 0.8em;
+  padding: 1em 2em;
+  margin: 0 0 0.5em 0.5em;
+}
+
+.table-of-contents ul>li {
+margin: 0 0 .6em 0;
+list-style-type: none;
+}
+
+.table-of-contents a {
+text-decoration: none;
+color: #3D5AFE;
+}
+
+
+
+.emphasized {
+   font-size: 1.2em;
+}
+
+
+
+
+
+
+
+/* Links in document */
+a {color: #479ace;}
+a:active {color: #479ace; outline: none;}
+a:visited {color: #479ace;}
+a:hover {color: #75b3da;}

@@ -1,0 +1,274 @@
+---
+output:
+   bookdown::word_document2:
+    number_sections: no
+    reference_docx: ./lib/ReportTemplateCalibri.docx
+    fig_caption: true
+    
+params: 
+  company: "Janssen Research & Development" 
+  reportName: "JNJ-75201646 Whole Blood EC Estimate Analysis"
+  identifier: "JNJ-75201646 Whole Blood Cytotoxicity and T Cell Activation Drug Discovery Analysis Report"
+  protocol: NULL
+  details: "Heme Cancer, Large Molecule, NME Declaration Support"
+  primaryCompoundID: "JNJ-75201646"
+  reportDate: "November 27, 2020"
+  author: "Author's Name (namesurname@its.jnj.com)"
+  recipient: "Scientist's Name"
+  reportNo: "2021-xxxx"   
+  
+  endCode: FALSE    #TRUE/FALSE. TRUE: code will be printed at the end of the report, FALSE: only file location is printed at the end of the report
+  RmdLocation: "/filepath/HTML Template_Onco"
+---
+
+
+```{r delaycodeprinting, echo = FALSE, message = FALSE, warning = FALSE}
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height  = 4.25)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r libraries, message = FALSE, warning = FALSE}
+#use this block to set libraries, etc
+#devtools::install_github("rstudio/rmarkdown")
+library(kableExtra)
+library(tidyverse)
+library(pander)
+
+## SETUP LOCATION
+#setwd("/mnt/exports/shared/home/dputri/2019/2019-0542_Scoring system of neurotoxicology study/")
+
+```
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report     --------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+\newline
+
+\newline
+
+##### **`r params$company`**
+
+\newline
+
+##### **`r params$reportName`**
+
+
+
+***
+##### **`r params$identifier`**
+
+***
+
+##### `r params$protocol`  
+
+\newline
+
+##### `r params$details`
+
+\newline
+
+##### `r params$primaryCompoundID`
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+\newline
+
+
+**Report Date: **	`r params$reportDate`
+
+**Prepared by: **`r params$author`
+
+**Scientific Recipient: **`r params$recipient`
+
+**Report Number: ** `r params$reportNo`
+
+######
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+
+<!------------- DO NOT MODIFY FOLLOWING HEADINGS ------------------> 
+<!------------- Enter text and code below       -------------------> 
+
+# EXECUTIVE SUMMARY 
+\newline
+
+This report is the base for TMEDS group report template in **RMarkdown
+Word**. 
+
+[table of contents]
+
+######
+
+# 1. INTRODUCTION 
+
+This report template uses the Iris flower data set as the basis of an example of
+an analysis reporting using the TMEDS report template. Additional Rmarkdown
+help can be found at this
+website: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+## 1.1 Background 
+
+\newline
+
+## 1.2 Objectives 
+
+Purpose: to clearly identify key research questions to be investigated.
+
+# 2. METHODOLOGY 
+
+Purpose: to identify and describe the basic elements of statistical analysis,
+such as the different models and analysis methods to be used, the underlying
+assumptions, decision rules, if any. 
+
+
+## 2.1 Data Exploration
+
+To be updated
+
+## 2.2 Methods
+
+All analyses were performed in R version `r paste0(version$major,".", version$minor)`.
+
+######
+
+# 3. RESULTS 
+
+This section presents, in a summarized form, the final results from the study.
+If the project has undergone numerous revisions in assumptions, scenarios and
+focus, then only the more salient results are to be considered. Graphics and
+tables should be used to summarize the key results. 
+
+
+```{r fig1, warning = FALSE, fig.cap = "Scatterplot Matrix of Iris Measures"}
+data(iris)
+
+plot(iris$Petal.Length, iris$Petal.Width, pch=21, bg=c("red","green3","blue")[unclass(iris$Species)], 
+     main="Edgar Anderson's Iris Data", xlab = "Petal Length", ylab = "Petal Width")
+```
+
+Figure \@ref(fig:fig1) shows simple scatter plot of petal length and petal width
+from Iris dataset available in R.  
+
+## 3.1 Exploratory data analysis 
+
+
+ Table \@ref(tab:tab1) presents summary statistics of physical characteristics
+of irises by species.  These data are plotted against each other in scatterplots
+in Figure \@ref(fig:fig1).
+
+```{r tab1, results = 'asis'}
+wdat <-  iris %>% 
+		group_by(Species) %>% 
+		summarise(meanWidth = mean(Sepal.Width), meanLength = mean(Sepal.Length))
+
+kable(wdat, format = "pipe", caption = "Summary Statistics of Iris Measures by Species")
+```
+
+######
+
+## 3.2 Modeling
+
+### 3.2.1 Subsubsection
+
+######
+
+
+# 4. CONCLUSIONS AND RECOMMENDATIONS
+
+######
+
+
+# APPENDIX 1: SUPPORTING ANALYSES 
+
+
+\newline
+
+######
+
+# APPENDIX 2: LIST OF DATASETS AND LOCATION 
+
+\newline
+
+Flow Cytometry data: Whole Blood Spike-in Individual-122319-KP edits.pzfx
+
+Location: jsendeck/Projects/2020/Pillarisetti/2020-12337/dat/
+
+######
+
+
+# APPENDIX 3: PROGRAMMING CODE  
+
+\newline
+
+```{r codelocation, echo=FALSE, results='asis'}
+if(params$endCode != "TRUE"){
+  cat(paste("See", params$RmdLocation, "for code details."))
+  }
+
+if(params$endCode == "TRUE"){ 
+  cat("# Code")
+  }  
+```
+
+```{r codeprint, echo = TRUE, eval = FALSE, ref.label = delay_code_labels, delay = FALSE}
+```
+
+\newline
+
+# R Session Information  
+
+```{r}
+pander(sessionInfo(), compact = TRUE)
+```
+
